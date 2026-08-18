@@ -17,6 +17,15 @@ export class CalComApi implements ICredentialType {
 
 	properties: INodeProperties[] = [
 		{
+			displayName: 'Base URL',
+			name: 'baseUrl',
+			type: 'string',
+			required: true,
+			default: 'https://api.cal.com/v2',
+			description:
+				'Cal.com API base URL. Leave as-is for Cal.com cloud. For a self-hosted instance use https://your-cal-domain/api/v2.',
+		},
+		{
 			displayName: 'API Key',
 			name: 'apiKey',
 			type: 'string',
@@ -39,7 +48,7 @@ export class CalComApi implements ICredentialType {
 
 	test: ICredentialTestRequest = {
 		request: {
-			baseURL: 'https://api.cal.com/v2',
+			baseURL: '={{$credentials.baseUrl}}',
 			url: '/me',
 		},
 	};

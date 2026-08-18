@@ -24,7 +24,9 @@ export class CalCom implements INodeType {
 			},
 		],
 		requestDefaults: {
-			baseURL: 'https://api.cal.com/v2',
+			// Set on the credential so the same node serves Cal.com cloud and
+			// self-hosted instances, which expose /api/v2 on their own domain.
+			baseURL: '={{$credentials.baseUrl}}',
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',
