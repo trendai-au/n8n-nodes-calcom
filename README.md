@@ -74,6 +74,16 @@ Pushing the version tag triggers `.github/workflows/publish.yml`.
 
 ## Status
 
+**Published to npm as `n8n-nodes-calcom@0.1.0`** (2026-08-18) via GitHub Actions
+with a signed npm **provenance** attestation — the registry carries both a
+`publish v0.1` and a `provenance v1` attestation, which is what n8n requires of
+verified community nodes.
+
+Verification submission to the n8n Creator Portal is **pending**: creator
+account signup at `creators.n8n.io/signup` was returning HTTP 500 at the time
+of publishing (`/login` and `/` were fine, so it is their outage, not a
+credential problem). Retry that and submit.
+
 Early, but **every operation is verified against the live Cal.com v2 API**
 (2026-08-18, real account, real booking):
 
