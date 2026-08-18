@@ -26,6 +26,7 @@ export const bookingDescription: INodeProperties[] = [
 					request: {
 						method: 'GET',
 						url: '/bookings',
+						headers: { 'cal-api-version': '2024-08-13' },
 					},
 				},
 			},
@@ -38,6 +39,7 @@ export const bookingDescription: INodeProperties[] = [
 					request: {
 						method: 'GET',
 						url: '=/bookings/{{$parameter.bookingUid}}',
+						headers: { 'cal-api-version': '2024-08-13' },
 					},
 				},
 			},
@@ -50,6 +52,7 @@ export const bookingDescription: INodeProperties[] = [
 					request: {
 						method: 'POST',
 						url: '=/bookings/{{$parameter.bookingUid}}/cancel',
+						headers: { 'cal-api-version': '2024-08-13' },
 					},
 				},
 			},

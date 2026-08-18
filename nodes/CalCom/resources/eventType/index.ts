@@ -24,6 +24,9 @@ export const eventTypeDescription: INodeProperties[] = [
 					request: {
 						method: 'GET',
 						url: '/event-types',
+						// 2024-08-13 returns 404 on this endpoint; 2024-06-14 gives
+						// a flat array. Verified against the live API 2026-08-18.
+						headers: { 'cal-api-version': '2024-06-14' },
 					},
 				},
 			},

@@ -30,11 +30,11 @@ export class CalCom implements INodeType {
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',
-				// Cal.com pins breaking changes behind a date-based API version
-				// header. Bookings endpoints require it; sending it globally is
-				// harmless for the others.
-				'cal-api-version': '2024-08-13',
 			},
+			// NOTE: cal-api-version is deliberately NOT set globally. Verified
+			// against the live API 2026-08-18: /bookings needs 2024-08-13 to
+			// return a flat array, but /event-types 404s on that version and
+			// needs 2024-06-14. The header is set per operation instead.
 		},
 		properties: [
 			{
