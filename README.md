@@ -74,9 +74,37 @@ Pushing the version tag triggers `.github/workflows/publish.yml`.
 
 ## Status
 
-Early. The operation surface is deliberately small — bookings and event types —
-and the endpoint shapes still need verifying against a live Cal.com account
-before the first release.
+Early, but **every operation is verified against the live Cal.com v2 API**
+(2026-08-18, real account, real booking):
+
+| Operation | Result |
+|---|---|
+| Booking → Get Many | 200, flat array |
+| Booking → Get Many + status / attendee / limit filters | 200, filters applied |
+| Booking → Get | 200, single object |
+| Booking → Cancel | 200; booking status became `cancelled` and the reason landed |
+| Event Type → Get Many | 200, flat array |
+| Credential test (`GET /me`) | 200 |
+
+### The API version header is load-bearing
+
+`cal-api-version` is set **per operation**, not globally, because the two
+resources disagree:
+
+| Endpoint | `2024-06-14` | `2024-08-13` | no header |
+|---|---|---|---|
+| `/event-types` | 200, flat array | **404** | 200, nested object |
+| `/bookings` | — | 200, flat array | 200, nested object |
+
+Sending one version globally 404s event types. Sending none returns nested
+objects instead of arrays n8n can map to items.
+
+### Self-hosted note
+
+Self-hosted Cal.com **cannot issue API keys** — they are gated behind a
+commercial licence ("This is a commercial feature"), which is also why a
+self-hosted `/api/v2` route answers 500 rather than 401. The Base URL
+credential field still supports self-hosted for anyone holding a licence.
 
 ## License
 
