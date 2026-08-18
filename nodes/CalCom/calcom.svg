@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="darkblue"
-    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-cpu">
-    <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
-    <rect x="9" y="9" width="6" height="6"></rect>
-    <line x1="9" y1="1" x2="9" y2="4"></line>
-    <line x1="15" y1="1" x2="15" y2="4"></line>
-    <line x1="9" y1="20" x2="9" y2="23"></line>
-    <line x1="15" y1="20" x2="15" y2="23"></line>
-    <line x1="20" y1="9" x2="23" y2="9"></line>
-    <line x1="20" y1="14" x2="23" y2="14"></line>
-    <line x1="1" y1="9" x2="4" y2="9"></line>
-    <line x1="1" y1="14" x2="4" y2="14"></line>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" width="60" height="60" role="img" aria-label="Cal.com">
+  <rect x="2" y="2" width="56" height="56" rx="13" fill="#111111"/>
+  <!-- calendar hanger tabs -->
+  <rect x="19" y="10" width="4" height="9" rx="2" fill="#ffffff"/>
+  <rect x="37" y="10" width="4" height="9" rx="2" fill="#ffffff"/>
+  <!-- calendar body -->
+  <rect x="12" y="15" width="36" height="33" rx="6" fill="none" stroke="#ffffff" stroke-width="3.2"/>
+  <line x1="12" y1="25" x2="48" y2="25" stroke="#ffffff" stroke-width="3.2"/>
+  <!-- booked slot -->
+  <rect x="18" y="31" width="11" height="5" rx="2.5" fill="#ffffff"/>
+  <rect x="18" y="39" width="17" height="5" rx="2.5" fill="#ffffff" opacity="0.55"/>
+  <circle cx="40" cy="41.5" r="3.4" fill="#ffffff"/>
 </svg>
