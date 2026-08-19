@@ -81,19 +81,24 @@ jobs:
           node-version: 'lts/*'
           cache: 'npm'
 
+      # setup-node's lts/* ships npm 10.x, which predates trusted publishing.
+      # OIDC publishing needs npm 11.5.1+, so upgrade before releasing.
+      - name: Upgrade npm (trusted publishing needs 11.5.1+)
+        run: |
+          npm install -g npm@latest
+          npm --version
+
       - name: Install dependencies
         run: 'npm ci'
 
       - name: Release
-        # Publishes to npm with a provenance attestation (requires id-token: write above).
-        # Lint and build run automatically as part of the release process.
+        # Publishes to npm with a provenance attestation (requires id-token: write
+        # above). Lint and build run automatically as part of the release process.
         #
-        # Option A (OIDC): leave NPM_TOKEN unset — the token step is skipped and
-        #   npm uses the OIDC exchange instead.
-        # Option B (token): set NPM_TOKEN in repo secrets — it is written to
-        #   .npmrc here before publishing.
-        run: |
-          [ -n "$NPM_TOKEN" ] && npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
-          npm run release
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        # Authentication is OIDC Trusted Publishing — there is deliberately no
+        # NPM_TOKEN here. The trust relationship is registered against this repo
+        # and this workflow filename:
+        #   npm trust list n8n-nodes-calcom
+        # Adding a token back would reintroduce a long-lived credential that npm
+        # is actively deprecating for publishing.
+        run: 'npm run release'
