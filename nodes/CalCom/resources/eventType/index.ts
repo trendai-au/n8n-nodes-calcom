@@ -28,6 +28,13 @@ export const eventTypeDescription: INodeProperties[] = [
 						// a flat array. Verified against the live API 2026-08-18.
 						headers: { 'cal-api-version': '2024-06-14' },
 					},
+					// The array is nested under `data`; without this the node
+					// emits one item holding the whole envelope.
+					output: {
+						postReceive: [
+							{ type: 'rootProperty', properties: { property: 'data' } },
+						],
+					},
 				},
 			},
 		],

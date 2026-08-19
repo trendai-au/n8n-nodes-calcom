@@ -28,6 +28,14 @@ export const bookingDescription: INodeProperties[] = [
 						url: '/bookings',
 						headers: { 'cal-api-version': '2024-08-13' },
 					},
+					// Cal.com wraps every response as {status, data, pagination}.
+					// Without this the node emits ONE item holding the whole
+					// envelope instead of one item per booking.
+					output: {
+						postReceive: [
+							{ type: 'rootProperty', properties: { property: 'data' } },
+						],
+					},
 				},
 			},
 			{
@@ -41,6 +49,11 @@ export const bookingDescription: INodeProperties[] = [
 						url: '=/bookings/{{$parameter.bookingUid}}',
 						headers: { 'cal-api-version': '2024-08-13' },
 					},
+					output: {
+						postReceive: [
+							{ type: 'rootProperty', properties: { property: 'data' } },
+						],
+					},
 				},
 			},
 			{
@@ -53,6 +66,11 @@ export const bookingDescription: INodeProperties[] = [
 						method: 'POST',
 						url: '=/bookings/{{$parameter.bookingUid}}/cancel',
 						headers: { 'cal-api-version': '2024-08-13' },
+					},
+					output: {
+						postReceive: [
+							{ type: 'rootProperty', properties: { property: 'data' } },
+						],
 					},
 				},
 			},

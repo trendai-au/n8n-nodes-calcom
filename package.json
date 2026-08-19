@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-calcom",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "n8n community node for Cal.com — bookings and event types",
 	"license": "MIT",
 	"homepage": "https://github.com/trendai-au/n8n-nodes-calcom",
